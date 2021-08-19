@@ -21,10 +21,12 @@
 import CategorySideBar from './childComps/CategorySideBar';
 import CategorySideContent from './childComps/CategorySideContent';
 
+
 import NavBar from '@/components/common/navbar/NavBar';
 import Scroll from '@/components/common/scroll/Scroll';
 
 import { getAllCategory, getSubCategory } from '@/network/category';
+
 
 export default {
     name: 'Category',
@@ -39,7 +41,8 @@ export default {
         NavBar,
         CategorySideBar,
         CategorySideContent,
-        Scroll
+        Scroll,
+
     },
 
     created() {

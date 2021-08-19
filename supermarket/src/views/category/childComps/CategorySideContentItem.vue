@@ -1,11 +1,12 @@
 <template>
     <div class="sidecontent-item">
-        <img v-lazy="subCategoryItem.image" alt="subcategory" @load="imgLoad">
+        <img v-lazy="subCategoryItem.image" alt="subcategory" @load="imgLoad" >
         <p>{{subCategoryItem.title}}</p>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'CategorySideContentItem',
     props:{
@@ -16,12 +17,14 @@ export default {
             }
         }
     },
+
+
     methods: {
         imgLoad(){
         this.$bus.$emit('itemImgLoad');
-      }
-    },
-    
+      },
+
+    }
 }
 </script>
 
