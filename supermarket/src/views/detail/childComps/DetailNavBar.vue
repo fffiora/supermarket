@@ -7,7 +7,7 @@
           <div slot="center" class="title">
             <div v-for="(item,index) in titles" 
             class="title-item" 
-            :class="{active:index === currentIndex}"
+            :class="{active: currentIndex === index}"
             @click="titleClick(index)">
             {{item}}
             </div>
@@ -47,7 +47,7 @@ export default {
 <style scoped>
 .title{
   display: flex;
-  font-size: 13px;
+  font-size: 15px;
 }
   .title-item {
     flex: 1;
@@ -57,7 +57,7 @@ export default {
   color: var(--color-high-text);
 }
 .back{
-  margin-top: 6px;
-  margin-left: -5px;
+  margin-top: 3px;
+  margin-left: -10px;
 }
 </style>

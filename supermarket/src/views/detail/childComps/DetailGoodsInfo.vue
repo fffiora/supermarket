@@ -29,7 +29,7 @@
     },
     methods: {
 	    imgLoad() {
-        // 判断, 所有的图片都加载完了, 那么进行一次回调就可以了.
+        // 判断, 所有的图片都加载完了, 在进行一次回调.
         if (++this.counter === this.imagesLength) {
           this.$emit('imageLoad');
         }
@@ -51,7 +51,11 @@
   }
 
   .info-desc {
-    padding: 0 15px;
+    padding: 0 8px 0;
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
   }
 
   .info-desc .start, .info-desc .end {

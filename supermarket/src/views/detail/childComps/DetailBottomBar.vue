@@ -16,7 +16,7 @@
         </div>
         <div class="bar-item bar-right">
             <div class="cart" @click="addCart">加入购物车</div>
-            <div class="buy">购买</div>
+            <div class="buy">立即购买</div>
         </div> 
     </div>
 </template>
@@ -72,10 +72,10 @@ export default {
     line-height: 58px;
 }
 .bar-right .cart {
-    background: #ffe817;
-    color: #333;
+    background: linear-gradient(90deg,#ffd01e,#ff8917);
+    color: #fff;
 }
 .bar-right .buy {
-    background: #f69;
+    background: linear-gradient(90deg,#ff6034,#ee0a24)
 }
 </style>

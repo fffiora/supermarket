@@ -43,7 +43,11 @@
   }
 
   .info-title {
-    color: #222
+    color: #000;
+    font-weight: bolder;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: -5px;
   }
 
   .info-price {
@@ -51,18 +55,20 @@
   }
 
   .info-price .n-price {
-    font-size: 24px;
+    font-size: 25px;
     color: var(--color-high-text);
   }
 
   .info-price .o-price {
-    font-size: 13px;
+    font-size: 15px;
     margin-left: 5px;
     text-decoration: line-through;
   }
 
   .info-price .discount {
-    font-size: 12px;
+    font-size: 15px;
+    /* 字体加粗显得更有美感 */
+    font-weight: 700;
     padding: 2px 5px;
     color: #fff;
     background-color: var(--color-high-text);
@@ -78,13 +84,16 @@
     margin-top: 15px;
     line-height: 30px;
     display: flex;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(100,100,100,.1);
+    font-size: 15px;
+    color: #666;
+    border-bottom: 2px solid rgba(100,100,100,.5);
     justify-content: space-between;
   }
 
   .info-service {
     display: flex;
+    /* 均匀排列每个元素
+    首个元素放置于起点，末尾元素放置于终点 */
     justify-content: space-between;
     line-height: 60px;
   }

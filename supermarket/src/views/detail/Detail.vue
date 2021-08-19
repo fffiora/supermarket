@@ -13,7 +13,7 @@
     </scroll>
       <detail-bottom-bar @addCart="addToCart"/>
       <back-top @click.native="backClick" v-show="isShowBackTop"/>
-      <toast message="哈哈哈"/>
+      <toast/>
   </div>
 </template>
 
@@ -82,7 +82,7 @@ import { mapActions } from 'vuex'
       // 2.根据iid请求详情数据
       getDetail(this.iid).then(res => {
         // 2.1.获取顶部的图片轮播数据
-        console.log(res);
+        // console.log(res);
         const data = res.result;
         this.topImages = data.itemInfo.topImages
 
@@ -110,7 +110,7 @@ import { mapActions } from 'vuex'
           this.themeTopYs.push(this.$refs.comment.$el.offsetTop);
           this.themeTopYs.push(this.$refs.recommend.$el.offsetTop);
           this.themeTopYs.push(Number.MAX_VALUE)
-          console.log(this.themeTopYs);
+          // console.log(this.themeTopYs);
         })
         // 图片没有被计算在内，导致值不对
         // this.$nextTick(() => {
@@ -125,16 +125,11 @@ import { mapActions } from 'vuex'
       }),
       //3.请求推荐数据,然后把数据recommends保存起来
       getRecommend().then(res => {
-        console.log(res);
+        // console.log(res);
         this.recommends = res.data.list;
       });
     },
 
-    mounted(){
-      
-    },
-  
-  
     methods:{
       // 映射
       ...mapActions(['addCart']),
@@ -148,7 +143,6 @@ import { mapActions } from 'vuex'
 
       titleClick(index){
         //获取详情页导航栏的index
-        console.log(index);
         this.$refs.scroll.scrollTo(0,-this.themeTopYs[index],100)
       },
       contentScroll(position){
@@ -157,13 +151,14 @@ import { mapActions } from 'vuex'
         // 1.获取y值
         const positionY = -position.y
         let length = this.themeTopYs.length
-        for(let i = 0; i<length-1; i++){
-          if(this.currentIndex !== i && (positionY>this.themeTopYs[i]&&positionY<this.themeTopYs[i+1])){
-            // console.log(i);
-            this.currentIndex = i 
-          this.$refs.nav.currentIndex = this.currentIndex
-          }
-        }
+        for(let i = 0; i<length; i++){
+                if(this.currentIndex!==i && positionY>=this.themeTopYs[i] && positionY<this.themeTopYs[i+1]){
+                    this.currentIndex = i;
+                    this.$refs.nav.currentTitleIndex = i;
+
+                }
+            }
+
         // this.isShowBackTop = -position.y > BACK_POSITION
         this.isShowBackTop = (-position.y) > 1000
       },
@@ -223,6 +218,7 @@ import { mapActions } from 'vuex'
     position: relative;
     z-index: 9;
     background-color: #fff;
+    font-size: 20px;
   }
 
   .content {

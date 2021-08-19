@@ -57,7 +57,7 @@
 
 <style scoped>
   .shop-info {
-    padding: 25px 8px;
+    padding: 25px 15px;
     border-bottom: 5px solid #f2f5f8;
   }
 
@@ -66,6 +66,7 @@
     /* 让元素垂直中心对齐 */
     display: flex;
     align-items: center;
+    /* padding: 6px 10px 10px 4px; */
   }
 
   .shop-top img {
