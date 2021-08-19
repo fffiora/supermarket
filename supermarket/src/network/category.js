@@ -13,3 +13,12 @@ export function getSubCategory(maitKey) {
         }
     })
 }
+
+// export function getCategoryDetail(iid) {
+//     return request({
+//       url: '/detail',
+//       params: {
+//         iid
+//       }
+//     })
+//   }
