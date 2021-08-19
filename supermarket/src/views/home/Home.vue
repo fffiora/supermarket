@@ -73,34 +73,51 @@
         currentType: 'pop',
         isShowBackTop:false,
         tabOffsetTop:0,
-        isTabFixed: false
-
+        isTabFixed: false,
+        saveY:0
       }
     },
     computed:{
-      showGoods(){
+      showGoods() {
         // return goods[this.currentType].list
         return this.goods[this.currentType].list
+      },
+      activated() {
+        this.$refs.scroll.scrollTo(0,this.saveY,0)
+        this.$refs.scroll.refresh()
+      },
+      deactivated() {
+        // 离开(销毁)时吧y值保存下来
+        this.saveY = this.$refs.scroll.scroll.y
+        // console.log(this.saveY)
       }
     },
     created() {
-      // 1.请求多个数据,必须写this,否则还是用上面import引入的函数
+      // 1.请求多个数据,调用名字一样的函数必须写this,否则还是用上面import引入的函数.
+      // 详细逻辑不要写在created
       this.getHomeMultidata()
+      // getHomeMultidata().then(res => {
+      //   this.banners = res.data.banner.list
+      //   this.recommends = res.data.recommend.list
+      // })
       //2.请求商品数据
+      // getHomeGoods('pop',1).then(res => {
+      //   console.log(res);
+      // })
       this.getHomeGoods('pop')
       this.getHomeGoods('new')
       this.getHomeGoods('sell')
       
     },
     mounted(){
-      // 1.获取tabControl的offsetTop
-      // $el用于获取组件中的元素
-      // console.log(this.$refs.tabControl.$el.offsetTop);
+      // const refresh = this.debounce(this.$refs.scroll.refresh,2000)
+      // refresh()
     },
      methods: {
-      /**
+      /*
        * 事件监听相关的方法
        */
+     
       tabClick(index) {
         switch (index) {
           case 0:
@@ -121,15 +138,13 @@
         //500毫秒内回到顶部
         this.$refs.scroll.scrollTo(0, 0)
       },
-      // tabOffsetTop在这里
       swiperImageLoad(){
-        this.$refs.scroll.refresh()
+        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
       },
       contentScroll(position) {
         // 1.判断BackTop是否显示
         this.isShowBackTop = (-position.y) > 1000
         // 2.决定tabControl是否吸顶（positon：fixed）
-        this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
         this.isTabFixed = (-position.y) >this.tabOffsetTop
       },
       loadMore() {
@@ -149,6 +164,7 @@
       })
       },
       getHomeGoods(type) {
+        //获取page
         const page = this.goods[type].page + 1
         getHomeGoods(type, page).then(res => {
           // for(let n in res.data.list){
@@ -157,6 +173,7 @@
           // console.log(res);
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
+          // 完成上拉加载更多
           this.$refs.scroll.finishPullUp()
         })
       }
@@ -175,7 +192,7 @@
   .home-nav {
     background-color: var(--color-tint);
     color: #fff;
-
+    /* 使用浏览器原生滚动时，为了让导航栏固定 */
     /* position: fixed;
     left: 0;
     right: 0;
@@ -193,11 +210,10 @@
     left: 0;
     right: 0;
   }
+  /* 如果不设置，tabControl则会被盖住 */
     .tab-control {
      position: relative;
      z-index: 9;
    }
-    /* height: calc(100% - 93px); */
-    /* margin-top: 44px; */
 
 </style>

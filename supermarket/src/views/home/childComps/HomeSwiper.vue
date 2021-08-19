@@ -32,8 +32,10 @@ export default {
   },
   methods: {
       imageLoad(){
+        //让当前方法只加载一次，减少服务器压力
         if(!this.isLoad){
-        this.$emit('swipperImageLoad')
+        this.$emit('swiperImageLoad')
+        //调用完函数这次给他改成true，当下次实现imageLoad方法时，!this.isLoad就等于false了
         this.isLoad = true
       }
     }
