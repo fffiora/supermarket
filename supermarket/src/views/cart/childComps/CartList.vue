@@ -4,8 +4,8 @@
             <cart-list-item v-for="(item, index) in $store.state.cartList" :key="index" :goodsItem="item"/>
         </div>
         <div v-else class="empty-cart">
-            <p>购物车居然是空的（°ο°）~ @　</p>
-            <p>再忙，也记得买点什么犒赏自己</p>
+            <p>生活不易,要对自己好点哦（°ο°）~ 亲　</p>
+            <p>答应我,再忙，也记得买点什么犒赏自己</p>
             <p @click="goHome">去逛逛</p>
         </div>
     </div>
