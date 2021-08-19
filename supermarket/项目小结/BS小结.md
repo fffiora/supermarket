@@ -53,7 +53,18 @@
 1. BS 只针对其第一个子元素做滚动，所以一般在需要滚动的 content 外层包裹上一层 div.wrapper
 2. 实际滚动的 content 一定要大于 .wrapper
 3. 如果是横向滚动，那么 .wrapper 还需要设置 white-space: nowrap ; .content 还要设置 display: inline-block; 样式
-
+4.<template>
+  <div class="wrapper" ref='wrapper'>
+    <div class="content">
+    <slot></slot>
+    </div>
+  </div>
+</template>
+5.this.scroll.on('scroll', (position) => {
+        // console.log(position);
+        $emit发出自定义事件，然后再home里面接受<scroll @scroll="scrollContent">
+        this.$emit('scroll', position)
+      })
 ---
 
 ## 重要的配置选项
